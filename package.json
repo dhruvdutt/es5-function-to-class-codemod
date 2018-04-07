@@ -1,0 +1,21 @@
+{
+  "name": "func-to-classes",
+  "version": "1.0.0",
+  "description": "Transform ES5 Functions to ES6 Classes",
+  "main": "func-to-class.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvdutt/es5-function-to-class-codemod.git"
+  },
+  "keywords": [
+    "func-to-class",
+    "es5-to-es6",
+    "prototype-to-class"
+  ],
+  "author": "dhruvdutt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhruvdutt/es5-function-to-class-codemod/issues"
+  },
+  "homepage": "https://github.com/dhruvdutt/es5-function-to-class-codemod#readme"
+}
