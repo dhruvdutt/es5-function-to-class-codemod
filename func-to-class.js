@@ -194,4 +194,4 @@ export default function transformer(file, api) {
     });
 
   return root.toSource();
-};
+}
