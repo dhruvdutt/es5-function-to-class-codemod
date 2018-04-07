@@ -91,6 +91,7 @@ export default function transformer(file, api) {
             )
           );
         });
+      j(path).remove();
     });
 
   /*
@@ -193,4 +194,4 @@ export default function transformer(file, api) {
     });
 
   return root.toSource();
-}
+};
