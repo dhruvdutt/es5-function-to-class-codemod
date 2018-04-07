@@ -53,23 +53,20 @@ export default function transformer(file, api) {
         left: {
           type: "MemberExpression",
           object: {
-            object: {
-              type: "Identifier"
-            },
             property: {
-              type: "Identifier",
               name: "prototype"
             }
           }
+        },
+        right: {
+          type: "Literal"
         }
       }
     })
     .forEach(path => {
       const { name: className } = path.value.expression.left.object.object;
       const { name: memberName } = path.value.expression.left.property;
-      const { raw: memberValue } = path.value.expression.right;
-      console.log("memberName: ", memberName);
-      console.log("memberValue: ", memberValue);
+      const { value: memberValue } = path.value.expression.right;
       // Fetch previously stored path to insert methods
       const classPath = classPaths[className];
       j(classPath)
@@ -81,13 +78,18 @@ export default function transformer(file, api) {
         })
         .forEach(path => {
           const { body: constructorBody } = path.value.value.body;
-          console.log("constructorBody:", constructorBody);
-          // TODO: Push as this.name = "dhruvdutt";
-          //constructorBody.push(
-          //  j.ExpressionStatement(
-          //    j.identifier()
-          //  )
-          // )
+          constructorBody.push(
+            j.expressionStatement(
+              j.assignmentExpression(
+                "=",
+                j.memberExpression(
+                  j.thisExpression(),
+                  j.identifier(memberName)
+                ),
+                j.literal(memberValue)
+              )
+            )
+          );
         });
     });
 
