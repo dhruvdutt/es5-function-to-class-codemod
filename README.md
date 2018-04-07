@@ -1,11 +1,17 @@
 # Transform ES5 Functions to ES6 Classes :package: 
 
+### [Live Demo](https://astexplorer.net/#/gist/855cc00b6ebfe60f53b2c0543482ee92/4bf973702d884b89f9ba0dc0faea3f31b774f0ba) 💻
+
 #### Features :100:
 - [x] Methods on `prototype`
 - [x] Static Methods on `prototype`
 - [x] Variables and Literals on `prototype`
 - [x] Getters, Setters with `defineProperty`
 - [x] Block-level Variables
+
+##### Similar project - [lebab](https://uniibu.github.io/lebab-ce/). It doesn't currently support:
+  - [ ] Static Methods on `prototype`
+  - [ ] Block-level Variables
 
 #### Setup and Run :runner:
 
