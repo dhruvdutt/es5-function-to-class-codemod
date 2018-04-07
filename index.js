@@ -6,6 +6,9 @@ export default function transformer(file, api) {
   // Store class paths, used to push methods after class creation
   let classPaths = {};
 
+  /*
+    Transform to create Class
+  */
   root
     // Find all function declarations in the document
     .find(j.FunctionDeclaration, {
@@ -33,6 +36,9 @@ export default function transformer(file, api) {
       classPaths[pathId.name] = path;
     });
 
+  /*
+    Transform to create class methods based on prototype
+  */
   root
     .find(j.AssignmentExpression, {
       left: {
@@ -64,6 +70,44 @@ export default function transformer(file, api) {
         )
       );
       j(path).remove();
+    });
+
+  /*
+    Transform to create static class methods
+  */
+  root
+    .find(j.AssignmentExpression, {
+      left: {
+        type: "MemberExpression",
+        property: {
+          type: "Identifier"
+        }
+      },
+      right: {
+        type: "FunctionExpression"
+      }
+    })
+    .forEach(path => {
+      // Name of the class/function, For instance: ClassName.prototype.methodName
+      const { name: className } = path.value.left.object;
+      console.log('className: ', className);
+      // Fetch previously stored path or insert methods
+      const classPath = classPaths[className];
+      const { body: classBody } = classPath.value.body;
+      // Name of method
+      const { property: methodName } = path.value.left;
+      const { params: methodParams, body: methodBody } = path.value.right;
+      console.log('path: ', path);
+
+      classBody.push(
+        j.methodDefinition(
+          "method", // todo static method
+          methodName,
+          j.functionExpression(null, methodParams, methodBody)
+        )
+      );
+      j(path).remove();
+      // j(path).remove();
     });
 
   return root.toSource();
