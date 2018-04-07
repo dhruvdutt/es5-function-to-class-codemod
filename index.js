@@ -19,7 +19,6 @@ export default function transformer(file, api) {
     Transform to create Class
   */
   root
-    // Find all function declarations in the document
     .find(j.FunctionDeclaration, {
       id: {
         type: "Identifier"
@@ -45,6 +44,11 @@ export default function transformer(file, api) {
       classPaths[path.value.id.name] = path;
     });
 
+  
+
+  /*
+    Adds/pushes method/function at a given path to class
+  */
   function addMethodToClass(path, isStatic) {
     const { name: className } = isStatic
       ? path.value.left.object
@@ -118,7 +122,6 @@ export default function transformer(file, api) {
         }
       }
     })
-    // .find(j.MemberExpression)
     .forEach(path => {
       const { name: className } = path.value.arguments[0].object;
       const classPath = classPaths[className];
