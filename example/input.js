@@ -1,19 +1,19 @@
-function controller(param1, param2) {
+function Controller(param1, param2) {
   const name = "dhruvdutt";
   let age = 21;
 }
 
-controller.prototype.name = "Dhruvdutt";
+Controller.prototype.name = "Dhruvdutt";
 
-controller.prototype.contributeTo = function(param) {
+Controller.prototype.contributeTo = function(param) {
   var foo = "webpack";
 };
 
-controller.staticMethod = function(param) {
+Controller.staticMethod = function(param) {
   var bar = "webpack-cli";
 };
 
-Object.defineProperty(controller.prototype, "hello", {
+Object.defineProperty(Controller.prototype, "hello", {
   get: function() {
     return "world";
   },
@@ -22,7 +22,7 @@ Object.defineProperty(controller.prototype, "hello", {
   }
 });
 
-Object.defineProperty(controller.prototype, "lastname", {
+Object.defineProperty(Controller.prototype, "lastname", {
   get: function() {
     return "Jadhav";
   }
