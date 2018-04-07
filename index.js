@@ -90,24 +90,66 @@ export default function transformer(file, api) {
     .forEach(path => {
       // Name of the class/function, For instance: ClassName.prototype.methodName
       const { name: className } = path.value.left.object;
-      console.log('className: ', className);
       // Fetch previously stored path or insert methods
       const classPath = classPaths[className];
       const { body: classBody } = classPath.value.body;
       // Name of method
       const { property: methodName } = path.value.left;
       const { params: methodParams, body: methodBody } = path.value.right;
-      console.log('path: ', path);
-
       classBody.push(
         j.methodDefinition(
-          "method", // todo static method
+          "method",
           methodName,
-          j.functionExpression(null, methodParams, methodBody)
+          j.functionExpression(null, methodParams, methodBody),
+          true
         )
       );
       j(path).remove();
-      // j(path).remove();
+    });
+
+  /*
+    Transform for getters, setters
+  */
+  root
+    .find(j.CallExpression, {
+      callee: {
+        type: "MemberExpression",
+        object: {
+          type: "Identifier",
+          name: "Object"
+        },
+        property: {
+          type: "Identifier",
+          name: "defineProperty"
+        }
+      }
+    })
+    // .find(j.MemberExpression)
+    .forEach(path => {
+      // Name of the class/function, For instance: ClassName.prototype.methodName
+      const { name: className } = path.value.arguments[0].object;
+      // Fetch previously stored path or insert methods
+      const classPath = classPaths[className];
+      const { body: classBody } = classPath.value.body;
+      // Name of method
+      const { value: methodName } = path.value.arguments[1];
+
+      const { properties } = path.value.arguments[2];
+
+      properties.forEach(property => {
+        // Type of method => get || set
+        const { name: type } = property.key;
+        const { params: methodParams, body: methodBody } = property.value;
+        classBody.push(
+          j.methodDefinition(
+            type,
+            j.identifier(methodName),
+            j.functionExpression(null, methodParams, methodBody)
+          )
+        );
+      });
+
+      j(path).remove();
     });
 
   return root.toSource();
