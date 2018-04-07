@@ -44,7 +44,47 @@ export default function transformer(file, api) {
       classPaths[path.value.id.name] = path;
     });
 
-  
+  /*
+    Transform prototype variables into class constructor
+  */
+  root
+    .find(j.ExpressionStatement, {
+      expression: {
+        left: {
+          type: "MemberExpression",
+          object: {
+            object: {
+              type: "Identifier"
+            },
+            property: {
+              type: "Identifier",
+              name: "prototype"
+            }
+          }
+        }
+      }
+    })
+    .forEach(path => {
+      const { name: className } = path.value.expression.left.object.object;
+      const { name: methodName } = path.value.expression.left.property;
+      // Fetch previously stored path to insert methods
+      const classPath = classPaths[className];
+      j(classPath)
+      .find(j.MethodDefinition, {
+        key: {
+          type: "Identifier",
+          name: "constructor"
+        }
+      })
+      .forEach((path) => {
+        const { body: constructorBody } = path.value.value.body;
+        // constructorBody.push(
+        //   j.ExpressionStatement(
+        //     j.identifier("constructor")
+        //   )
+        // )
+      })
+    });
 
   /*
     Adds/pushes method/function at a given path to class
