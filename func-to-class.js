@@ -67,7 +67,7 @@ export default function transformer(file, api) {
       const { name: className } = path.value.expression.left.object.object;
       const { name: memberName } = path.value.expression.left.property;
       const { value: memberValue } = path.value.expression.right;
-      // Fetch previously stored path to insert methods
+      // Fetch previously stored class path to find constructor
       const classPath = classPaths[className];
       j(classPath)
         .find(j.MethodDefinition, {
@@ -101,7 +101,7 @@ export default function transformer(file, api) {
     const { name: className } = isStatic
       ? path.value.left.object
       : path.value.left.object.object;
-    // Fetch previously stored path to insert methods
+    // Fetch previously stored class path to insert methods
     const classPath = classPaths[className];
     const { property: methodName } = path.value.left;
     const { body: classBody } = classPath.value.body;
@@ -172,6 +172,7 @@ export default function transformer(file, api) {
     })
     .forEach(path => {
       const { name: className } = path.value.arguments[0].object;
+      // Fetch previously stored class path to insert methods
       const classPath = classPaths[className];
       const { body: classBody } = classPath.value.body;
       const { value: methodName } = path.value.arguments[1];

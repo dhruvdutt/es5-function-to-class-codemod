@@ -1,6 +1,6 @@
 # Transform ES5 Functions to ES6 Classes :package: 
 
-### [Live Demo](https://astexplorer.net/#/gist/855cc00b6ebfe60f53b2c0543482ee92/4bf973702d884b89f9ba0dc0faea3f31b774f0ba) 💻
+### [Live Demo](https://astexplorer.net/#/gist/855cc00b6ebfe60f53b2c0543482ee92/) 💻
 
 #### Features :100:
 - [x] Methods on `prototype`
