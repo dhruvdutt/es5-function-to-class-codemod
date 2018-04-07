@@ -39,7 +39,7 @@ export default function transformer(file, api) {
         type: "MemberExpression",
         object: {
           property: {
-            name: 'prototype'
+            name: "prototype"
           }
         }
       },
@@ -60,11 +60,7 @@ export default function transformer(file, api) {
         j.methodDefinition(
           "method",
           methodName,
-          j.functionExpression(
-            null,
-            methodParams,
-            methodBody
-          )
+          j.functionExpression(null, methodParams, methodBody)
         )
       );
       j(path).remove();
