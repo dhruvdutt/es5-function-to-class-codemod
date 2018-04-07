@@ -66,24 +66,29 @@ export default function transformer(file, api) {
     })
     .forEach(path => {
       const { name: className } = path.value.expression.left.object.object;
-      const { name: methodName } = path.value.expression.left.property;
+      const { name: memberName } = path.value.expression.left.property;
+      const { raw: memberValue } = path.value.expression.right;
+      console.log("memberName: ", memberName);
+      console.log("memberValue: ", memberValue);
       // Fetch previously stored path to insert methods
       const classPath = classPaths[className];
       j(classPath)
-      .find(j.MethodDefinition, {
-        key: {
-          type: "Identifier",
-          name: "constructor"
-        }
-      })
-      .forEach((path) => {
-        const { body: constructorBody } = path.value.value.body;
-        // constructorBody.push(
-        //   j.ExpressionStatement(
-        //     j.identifier("constructor")
-        //   )
-        // )
-      })
+        .find(j.MethodDefinition, {
+          key: {
+            type: "Identifier",
+            name: "constructor"
+          }
+        })
+        .forEach(path => {
+          const { body: constructorBody } = path.value.value.body;
+          console.log("constructorBody:", constructorBody);
+          // TODO: Push as this.name = "dhruvdutt";
+          //constructorBody.push(
+          //  j.ExpressionStatement(
+          //    j.identifier()
+          //  )
+          // )
+        });
     });
 
   /*
