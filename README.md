@@ -86,3 +86,7 @@ class Controller {
   }
 }
 ```
+
+[Complex example](https://astexplorer.net/#/gist/541ba10e75228eeb83ccf95589b0bd76): Multiple functions in same file with one of the functions having same name.
+ 
+Also, featured on [awesome-jscodeshift](https://github.com/sejoker/awesome-jscodeshift#codemods).
