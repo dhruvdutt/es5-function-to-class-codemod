@@ -21,71 +21,8 @@ git clone --depth=1 https://github.com/dhruvdutt/es5-function-to-class-codemod c
 jscodeshift -t func-to-class.js example/input.js
 ```
 
-#### Sample Input 🛴
-
-```js
-function Controller(param1, param2) {
-  const name = "dhruvdutt";
-  let age = 21;
-}
-
-Controller.prototype.name = "Dhruvdutt";
-
-Controller.prototype.contributeTo = function(param) {
-  var foo = "webpack";
-};
-
-Controller.staticMethod = function(param) {
-  var bar = "webpack-cli";
-};
-
-Object.defineProperty(Controller.prototype, "hello", {
-    get: function () {
-        return "world";
-    },
-    set: function (name) {
-        console.log("Do anything with " + name);
-    },
-});
-
-Object.defineProperty(Controller.prototype, "lastname", {
-    get: function () {
-        return "Jadhav";
-    },
-});
-```
-
-#### Sample Output :rocket:
-
-```js
-class Controller {
-  constructor(param1, param2) {
-    const name = "dhruvdutt";
-    let age = 21;
-    this.name = "Dhruvdutt";
-  }
-
-  contributeTo(param) {
-    var foo = "webpack";
-  }
-
-  static staticMethod(param) {
-    var bar = "webpack-cli";
-  }
-
-  get hello() {
-    return "world";
-  }
-
-  set hello(name) {
-    console.log("Do anything with " + name);
-  }
-
-  get lastname() {
-    return "Jadhav";
-  }
-}
-```
+#### Sample Input 🛴 and Output :rocket:
+![input2](https://user-images.githubusercontent.com/5961873/38467870-ae616014-3b5b-11e8-8b92-87bdde827546.png)
 
 [Complex example](https://astexplorer.net/#/gist/541ba10e75228eeb83ccf95589b0bd76): Multiple functions in same file with one of the functions having same name.
  
