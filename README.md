@@ -12,9 +12,10 @@
 - [x] Getters, Setters with `defineProperty`
 - [x] Block-level Variables
 
-##### Similar project - [lebab](https://uniibu.github.io/lebab-ce/). It doesn't currently support:
-  - [ ] Static Methods on `prototype`
-  - [ ] Block-level Variables
+#### Sample Input 🛴 and Output :rocket:
+![input2](https://user-images.githubusercontent.com/5961873/38467870-ae616014-3b5b-11e8-8b92-87bdde827546.png)
+
+[Complex example](https://astexplorer.net/#/gist/541ba10e75228eeb83ccf95589b0bd76): Multiple functions in same file with one of the functions having same name.
 
 #### Setup and Run :runner:
 
@@ -24,7 +25,6 @@ git clone --depth=1 https://github.com/dhruvdutt/es5-function-to-class-codemod c
 jscodeshift -t func-to-class.js example/input.js
 ```
 
-#### Sample Input 🛴 and Output :rocket:
-![input2](https://user-images.githubusercontent.com/5961873/38467870-ae616014-3b5b-11e8-8b92-87bdde827546.png)
-
-[Complex example](https://astexplorer.net/#/gist/541ba10e75228eeb83ccf95589b0bd76): Multiple functions in same file with one of the functions having same name.
+##### Similar project - [lebab](https://uniibu.github.io/lebab-ce/). It doesn't currently support:
+  - [ ] Static Methods on `prototype`
+  - [ ] Block-level Variables
