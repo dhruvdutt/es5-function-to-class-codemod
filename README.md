@@ -1,4 +1,7 @@
-# Transform ES5 Functions to ES6 Classes :package: 
+# Transform ES5 Functions to ES6 Classes :package:
+
+[![npm](https://img.shields.io/npm/v/func-to-classes.svg)](https://www.npmjs.com/package/func-to-classes)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sejoker/awesome-jscodeshift#codemods)
 
 ### [Live Demo](https://astexplorer.net/#/gist/855cc00b6ebfe60f53b2c0543482ee92/) 💻
 
@@ -25,5 +28,3 @@ jscodeshift -t func-to-class.js example/input.js
 ![input2](https://user-images.githubusercontent.com/5961873/38467870-ae616014-3b5b-11e8-8b92-87bdde827546.png)
 
 [Complex example](https://astexplorer.net/#/gist/541ba10e75228eeb83ccf95589b0bd76): Multiple functions in same file with one of the functions having same name.
- 
-Also, featured on [awesome-jscodeshift](https://github.com/sejoker/awesome-jscodeshift#codemods).
