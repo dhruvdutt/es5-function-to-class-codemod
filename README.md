@@ -36,7 +36,7 @@ jscodeshift -t func-to-class.js example/input.js
 
 #### Setup and Run - For babel-plugin-es5-function-to-class  :runner:
 
- **Note : The babel-plugin-es5-function-to-class will only work properly if there is only one function declared in the input file else it will overwrite with the newest declared function. Will resolve this soon  **   :smile:
+ > Note : The babel-plugin-es5-function-to-class will only work properly if there is only one function declared in the input file else it will overwrite with the newest declared function. Will resolve this soon  :smile:
 
 
 
