@@ -7,6 +7,14 @@
     "type": "git",
     "url": "git+https://github.com/dhruvdutt/es5-function-to-class-codemod.git"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel example/babel-input.js -o example/babel-output.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4"
+  },
   "keywords": [
     "func-to-class",
     "es5-to-es6",

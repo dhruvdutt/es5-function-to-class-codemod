@@ -1,0 +1,7 @@
+{
+
+    "plugins": [
+        "./babel-plugin-es5-function-to-class/index.js"
+     ]
+
+}
